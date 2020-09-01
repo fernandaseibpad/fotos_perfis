@@ -58,17 +58,3 @@ gera.dataset = function(anos = list("2017", "2018", "2019", "2020"), instituicao
   dados
   
 }
-
-url = 'https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/trabalhoConclusao/listaTrabalhoConclusao.xhtml'
-
-# start a chrome browser
-rD = rsDriver(browser = "chrome", port = 4444L, geckover = NULL, 
-               chromever =  "latest", iedrver = NULL, phantomver = NULL)
-
-remDr = rD$client 
-remDr$navigate(url)
-
-dados.pgcomp.chrome = gera.dataset()
-
-# stop the selenium server
-rD$server$stop()
