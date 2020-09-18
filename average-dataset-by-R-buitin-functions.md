@@ -1,5 +1,9 @@
 <h1 style="color:slateblue;font-family:courier;">Different ways and time required to calculate mean of a dataset with R buit-in functions</h1>
 
+<h2 style="color:slateblue;font-family:courier;">Let $x_i = (x_{i1}, x_{i2}, ..., x_{id}), 1 \leq i \leq n = 150$ (nrow(iris)), $1 \leq d \leq 4$ (ncol(iris)) be each object of the iris dataset. The mean of the dataset is defined as  </h2>
+
+$$ \frac{\sum_{i = 1}^n x_i}{n} = \frac{\sum_{i = 1}^n(x_{i1}, x_{i2}, x_{i3}, x_{i4})}{n} $$
+
 
 ```R
 mean.by.column = function(X){
