@@ -3,6 +3,8 @@ title: "Different ways and time required to calculate mean of a dataset with R b
 #author: "Fernanda"
 #date: "18/09/2020"
 output: github_document
+#html_notebook
+#github_document
 #html_document
 ---
 

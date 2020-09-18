@@ -74,11 +74,11 @@ knitr::kable(result$time)
 
 |   | test             | replications | elapsed | relative | user.self | sys.self |
 | :- | :--------------- | -----------: | ------: | -------: | --------: | -------: |
-| 2 | colSums/nrow     |         1000 |    0.05 |      1.0 |      0.03 |        0 |
-| 5 | mean.by.sum.nrow |         1000 |    0.05 |      1.0 |      0.05 |        0 |
-| 4 | mean.by.column   |         1000 |    0.06 |      1.2 |      0.06 |        0 |
-| 1 | colMeans         |         1000 |    0.08 |      1.6 |      0.08 |        0 |
-| 3 | apply            |         1000 |    0.11 |      2.2 |      0.11 |        0 |
+| 5 | mean.by.sum.nrow |         1000 |    0.04 |     1.00 |      0.05 |        0 |
+| 2 | colSums/nrow     |         1000 |    0.05 |     1.25 |      0.04 |        0 |
+| 4 | mean.by.column   |         1000 |    0.05 |     1.25 |      0.04 |        0 |
+| 1 | colMeans         |         1000 |    0.08 |     2.00 |      0.08 |        0 |
+| 3 | apply            |         1000 |    0.11 |     2.75 |      0.11 |        0 |
 
 ### Mean of the wine dataset
 
@@ -92,11 +92,11 @@ knitr::kable(time_required(wine.uci[, -1])$time)
 
 |   | test             | replications | elapsed | relative | user.self | sys.self |
 | :- | :--------------- | -----------: | ------: | -------: | --------: | -------: |
-| 2 | colSums/nrow     |         1000 |    0.09 |    1.000 |      0.10 |     0.00 |
-| 1 | colMeans         |         1000 |    0.11 |    1.222 |      0.11 |     0.00 |
-| 5 | mean.by.sum.nrow |         1000 |    0.14 |    1.556 |      0.14 |     0.00 |
-| 4 | mean.by.column   |         1000 |    0.16 |    1.778 |      0.16 |     0.00 |
-| 3 | apply            |         1000 |    0.22 |    2.444 |      0.20 |     0.02 |
+| 2 | colSums/nrow     |         1000 |    0.09 |    1.000 |      0.09 |     0.00 |
+| 1 | colMeans         |         1000 |    0.13 |    1.444 |      0.10 |     0.01 |
+| 5 | mean.by.sum.nrow |         1000 |    0.15 |    1.667 |      0.16 |     0.00 |
+| 4 | mean.by.column   |         1000 |    0.17 |    1.889 |      0.17 |     0.00 |
+| 3 | apply            |         1000 |    0.26 |    2.889 |      0.27 |     0.00 |
 
 ### Mean of the breast cancer dataset
 
@@ -112,9 +112,9 @@ knitr::kable(time_required(breast.cancer.uci[,-2])$time)
 | :- | :--------------- | -----------: | ------: | -------: | --------: | -------: |
 | 2 | colSums/nrow     |         1000 |    0.22 |    1.000 |      0.22 |        0 |
 | 1 | colMeans         |         1000 |    0.25 |    1.136 |      0.25 |        0 |
-| 5 | mean.by.sum.nrow |         1000 |    0.36 |    1.636 |      0.36 |        0 |
-| 4 | mean.by.column   |         1000 |    0.37 |    1.682 |      0.38 |        0 |
-| 3 | apply            |         1000 |    0.67 |    3.045 |      0.67 |        0 |
+| 5 | mean.by.sum.nrow |         1000 |    0.34 |    1.545 |      0.34 |        0 |
+| 4 | mean.by.column   |         1000 |    0.38 |    1.727 |      0.38 |        0 |
+| 3 | apply            |         1000 |    0.69 |    3.136 |      0.69 |        0 |
 
 ## Considerations:
 
