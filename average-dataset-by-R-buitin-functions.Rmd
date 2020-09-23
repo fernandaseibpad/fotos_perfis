@@ -1,0 +1,101 @@
+---
+title: "Different ways and time required to calculate mean of a dataset with R buit-in functions"
+
+output: github_document
+#html_notebook
+#github_document
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Let $x_i = (x_{i1}, x_{i2}, ..., x_{id}), 1 \leq i \leq n = 150$ (nrow(iris)), $1 \leq d \leq 4$ (ncol(iris)) be each object of the iris dataset. The mean of the dataset is defined as
+
+$$ \frac{\sum_{i = 1}^n x_i}{n} = \frac{\sum_{i = 1}^n(x_{i1}, x_{i2}, x_{i3}, x_{i4})}{n} $$
+
+```{r}
+mean.by.column = function(X){
+    v.mean = c()
+    for (i in 1:ncol(X)){
+        v.mean[i] = mean(X[, i])
+    }
+    names(v.mean) = names(X)
+    v.mean
+}
+```
+
+```{r}
+mean.by.sum.nrow = function(X){
+    v.mean = c()
+    for (i in 1:ncol(X)){
+        v.mean[i] = sum(X[, i])/nrow(X)
+    }
+    names(v.mean) = names(X)
+    v.mean
+}
+```
+
+## Time required to compute each function
+### Using the rbenchmark package
+```{r}
+library(rbenchmark)
+```
+
+```{r}
+time_required = function(X){
+    out = list()
+    time = benchmark("colMeans" = {
+            out$colmeans = colMeans(X)
+          },
+          "colSums/nrow" = {
+            out$colsums = colSums(X)/nrow(X)
+          },
+          "apply" = {
+            out$apply = apply(X, 2, mean)
+          },
+          "mean.by.column" = {
+            out$mean1 = mean.by.column(X)
+          },
+          "mean.by.sum.nrow" = {
+            out$mean2 = mean.by.sum.nrow(X)
+          },
+          replications = 1000,
+          columns = c("test", "replications", "elapsed",
+                      "relative", "user.self", "sys.self"))
+    out$time = time[order(time$elapsed), ]
+    out
+}    
+```
+
+### Mean of the iris dataset
+
+```{r}
+result = time_required(iris[, -5])
+
+knitr::kable(result$time)
+```
+
+### Mean of the wine dataset
+```{r}
+wine.uci = read.csv("https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data", header = FALSE)
+```
+
+```{r}
+knitr::kable(time_required(wine.uci[, -1])$time)
+```
+
+### Mean of the breast cancer dataset
+```{r}
+breast.cancer.uci = read.csv("https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data", header = FALSE)
+```
+
+```{r}
+knitr::kable(time_required(breast.cancer.uci[,-2])$time)
+```
+
+## Considerations:
+
+- The function **mean.by.column** that calculates the mean of each column inside a *for* was faster than using the **apply** function.
+- The functions **mean.by.sum.nrow** and **colSums/nrow** were faster than the **colMeans** function.
